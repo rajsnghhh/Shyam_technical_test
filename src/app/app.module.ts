@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { CommonService } from './modules/common.service';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ReactiveFormsModule } from '@angular/forms';
+import { PaginationModule } from './modules/pagination/pagination.module';
 
 
 @NgModule({
@@ -16,7 +18,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    AppRoutingModule, ReactiveFormsModule,
     HttpClientModule, MatToolbarModule, NgbModule, 
   ],
   providers: [CommonService],

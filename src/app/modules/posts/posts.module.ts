@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule } from '@angular/forms';
+import { PaginationModule } from '../pagination/pagination.module';
 
 
 @NgModule({
@@ -15,7 +16,7 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
-    PostsRoutingModule,
+    PostsRoutingModule,PaginationModule,
     HttpClientModule, MatCardModule, NgxPaginationModule, FormsModule
   ],
   providers: [TitleCasePipe]

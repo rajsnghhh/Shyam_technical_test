@@ -9,7 +9,8 @@ import { CommonService } from '../common.service';
 })
 export class PostsComponent {
   postData: Array<any> = [];
-  page: number = 1;
+  // page: number = 1;
+  page = 1;
   count: number = 0;
   tableSize: number = 10;
   tableSizes: any = [3, 6, 9, 12];
@@ -37,15 +38,15 @@ export class PostsComponent {
     })
   }
 
-  onTableDataChange(event: any) {
-    this.page = event;
-    this.fetchPosts();
-  }
-  onTableSizeChange(event: any): void {
-    this.tableSize = event.target.value;
-    this.page = 1;
-    this.fetchPosts();
-  }
+  // onTableDataChange(event: any) {
+  //   this.page = event;
+  //   this.fetchPosts();
+  // }
+  // onTableSizeChange(event: any): void {
+  //   this.tableSize = event.target.value;
+  //   this.page = 1;
+  //   this.fetchPosts();
+  // }
 
   EnterData(e: any) {
     this.tableSize = e.target.value;
@@ -54,5 +55,9 @@ export class PostsComponent {
 
   ngOnDestroy(){
     localStorage.removeItem('pageSize');
+  }
+
+  pageEvent(pageNumber: number): void {
+    this.page = pageNumber;
   }
 }

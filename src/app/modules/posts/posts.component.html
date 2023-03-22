@@ -12,8 +12,8 @@
 
                 <div class="col-md-2">
                     <label for="itemsPerPage">Items per page:</label>
-                    <select class="form-select" (change)="EnterData($event)"
-                        style="margin-bottom: 5px;" [(ngModel)]="change">
+                    <select class="form-select" (change)="EnterData($event)" style="margin-bottom: 5px;"
+                        [(ngModel)]="change">
                         <!-- <option value="">-- Select Page Size--</option> -->
                         <option value="5">5</option>
                         <option value="10">10</option>
@@ -63,11 +63,14 @@
 
                     </table>
 
-                    <div class="d-flex justify-content-center">
+                    <!-- <div class="d-flex justify-content-center">
                         <pagination-controls previousLabel="Prev" nextLabel="Next"
                             (pageChange)="onTableDataChange($event)">
                         </pagination-controls>
-                    </div>
+                    </div> -->
+
+
+                    <app-pagination [index]="page" (page)="pageEvent($event)"></app-pagination>
                 </div>
             </div>
         </div>
