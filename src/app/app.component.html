@@ -1,17 +1,31 @@
-<router-outlet></router-outlet>
+<mat-toolbar class="nav_bar">
+    <!-- <input type="radio" id="radio1" name="radios" value="all" checked>
+    <label for="radio1" (click)="openPostsModule()">Posts</label>
+    <input type="radio" id="radio2" name="radios" value="false">
+    <label for="radio2" (click)="openToDoModule()">To Do</label> -->
+    <div class="section over-hide z-bigger" >
+        <label class="for-checkbox" for="general"></label>
+        <div class="section over-hide z-bigger">
+            <div class="container pb-5">
+                <div class="col-12 pb-5">
+                    <input class="checkbox-tools" type="radio" name="tools" id="tool-1" *ngIf ="currentRoute == '/Posts'" checked>
+                    <input class="checkbox-tools" type="radio" name="tools" id="tool-1"  *ngIf ="currentRoute != '/Posts'">
+                    <label class="for-checkbox-tools" for="tool-1" (click)="openPostsModule()">
+                        Posts
+                    </label>
+                    <input class="checkbox-tools" type="radio" name="tools" id="tool-2" *ngIf ="currentRoute == '/To_Do'" checked>
+                    <input class="checkbox-tools" type="radio" name="tools" id="tool-2"  *ngIf ="currentRoute != '/To_Do'">
+                    <label class="for-checkbox-tools" for="tool-2" (click)="openToDoModule()">
+                        To Do
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<!-- <mat-tab-group animationDuration="500ms" (selectedTabChange)="tabChanged($event)">
+</mat-toolbar>
 
-  <mat-tab  (change)="openPostsModule()">
-    <ng-template mat-tab-label>
-      Posts
-    </ng-template>
-  </mat-tab>
 
-  <mat-tab>
-    <ng-template mat-tab-label>
-      To Do
-    </ng-template>
-  </mat-tab>
-  
-</mat-tab-group> -->
+<div class="main_content_inner">
+    <router-outlet></router-outlet>
+</div>

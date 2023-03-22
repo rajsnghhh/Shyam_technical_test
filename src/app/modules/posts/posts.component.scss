@@ -1,0 +1,15 @@
+
+::ng-deep .mdc-card {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 100%;
+    margin-left: 90px;
+    height: 500px;
+}
+
+#hover:hover {
+    color: #499 !important;
+    font-size: 1rem;
+    font-weight: 600;
+  }

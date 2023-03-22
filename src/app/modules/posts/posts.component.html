@@ -1,1 +1,76 @@
-<p>posts works!</p>
+<mat-card>
+    <mat-card-content style="background-color: #f8f9fa;">
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-md-10">
+                    <div id="header-fixed" style="display: flex;">
+                        <h4 class="page-title">Posts</h4>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <label for="itemsPerPage">Items per page:</label>
+                    <select class="form-select" (change)="EnterData($event)"
+                        style="margin-bottom: 5px;" [(ngModel)]="change">
+                        <!-- <option value="">-- Select Page Size--</option> -->
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                    </select>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="white_box_tittle list_header">
+            <div class="QA_table">
+                <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper no-footer">
+                    <table class="table table-striped" role="grid" aria-describedby="DataTables_Table_0_info"
+                        style="table-layout: fixed;">
+
+                        <thead>
+                            <tr>
+                                <th style="width: 5%;">Id</th>
+                                <th style="width: 10%;">User Id</th>
+                                <th style="width: 20%;">Title</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr *ngFor="let post of postData| paginate : { itemsPerPage: tableSize, currentPage: page,
+                                    totalItems: count };   index as i">
+                                <td style="width: 5%;">{{post.id}}</td>
+                                <td style="width: 10%;">{{post.userId}}</td>
+                                <td style="width: 20%;">
+                                    <div class="popover__wrapper">
+                                        <h3 class="popover__title" id="hover">{{titlecasePipe.transform(post.title)
+                                            .substring(0,15)}}...</h3>
+                                        <div class="popover__content">
+                                            <ul style="word-wrap: break-word; text-align: left;">
+                                                {{titlecasePipe.transform(post.title)}}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr *ngIf="postData.length == 0">No data found</tr>
+
+                        </tbody>
+
+                    </table>
+
+                    <div class="d-flex justify-content-center">
+                        <pagination-controls previousLabel="Prev" nextLabel="Next"
+                            (pageChange)="onTableDataChange($event)">
+                        </pagination-controls>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </mat-card-content>
+</mat-card>
