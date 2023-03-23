@@ -4,7 +4,9 @@ import { CommonModule } from '@angular/common';
 import { ToDoRoutingModule } from './to-do-routing.module';
 import { ToDoComponent } from './to-do.component';
 import { MatCardModule } from '@angular/material/card';
-import { NgxPaginationModule } from 'ngx-pagination';
+import { FormsModule } from '@angular/forms';
+import { PaginationComponent } from 'src/app/sharedModule/pagination/pagination.component';
+import { PaginationModule } from 'src/app/sharedModule/pagination.module';
 
 
 @NgModule({
@@ -13,7 +15,10 @@ import { NgxPaginationModule } from 'ngx-pagination';
   ],
   imports: [
     CommonModule,
-    ToDoRoutingModule, MatCardModule, NgxPaginationModule
+    ToDoRoutingModule,
+     MatCardModule,
+     FormsModule,
+     PaginationModule
   ]
 })
 export class ToDoModule { }

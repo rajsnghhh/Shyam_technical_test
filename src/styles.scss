@@ -41,7 +41,6 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';
 
@@ -96,7 +95,7 @@ body {
 }
 
 .QA_table .table tbody td {
-  padding: 4px;
+  padding: 2px;
 }
 .QA_table .table thead th:first-child {
   border-radius: 10px 0px 0px 0px;
@@ -124,7 +123,6 @@ body {
   font-size: 15px;
   font-weight: 400;
   text-decoration: none;
-  // color: #499;
   text-align: center;
   margin-bottom: auto;
 }
@@ -155,4 +153,34 @@ body {
   border-color: transparent transparent #bfbfbf transparent;
   transition-duration: 0.3s;
   transition-property: transform;
+}
+
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: grey;
+}
+
+#table_wrapper{
+  display: block;
+  height: 331px;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+#header_fixed {
+position: sticky;
+top: 0;
+z-index: 999;
 }

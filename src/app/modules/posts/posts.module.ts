@@ -5,9 +5,8 @@ import { PostsRoutingModule } from './posts-routing.module';
 import { PostsComponent } from './posts.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
-import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule } from '@angular/forms';
-import { PaginationModule } from '../pagination/pagination.module';
+import { PaginationModule } from 'src/app/sharedModule/pagination.module';
 
 
 @NgModule({
@@ -17,7 +16,7 @@ import { PaginationModule } from '../pagination/pagination.module';
   imports: [
     CommonModule,
     PostsRoutingModule,PaginationModule,
-    HttpClientModule, MatCardModule, NgxPaginationModule, FormsModule
+    HttpClientModule, MatCardModule, FormsModule
   ],
   providers: [TitleCasePipe]
 })

@@ -12,7 +12,7 @@
 
                 <div class="col-md-2">
                     <label for="itemsPerPage">Items per page:</label>
-                    <select class="form-select" (change)="EnterData($event)" style="margin-bottom: 5px;"
+                    <select class="form-select" (change)="enterData($event)" style="margin-bottom: 5px;"
                         [(ngModel)]="change">
                         <!-- <option value="">-- Select Page Size--</option> -->
                         <option value="5">5</option>
@@ -27,50 +27,49 @@
         <div class="white_box_tittle list_header">
             <div class="QA_table">
                 <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper no-footer">
-                    <table class="table table-striped" role="grid" aria-describedby="DataTables_Table_0_info"
-                        style="table-layout: fixed;">
 
-                        <thead>
-                            <tr>
-                                <th style="width: 5%;">Id</th>
-                                <th style="width: 10%;">User Id</th>
-                                <th style="width: 20%;">Title</th>
-                            </tr>
-                        </thead>
+                    <div id="table_wrapper">
+                        <table class="table table-striped" role="grid" aria-describedby="DataTables_Table_0_info"
+                            style="table-layout: fixed;">
 
-                        <tbody>
+                            <thead id="header_fixed">
+                                <tr>
+                                    <th style="width: 5%;">Id</th>
+                                    <th style="width: 10%;">User Id</th>
+                                    <th style="width: 20%;">Title</th>
+                                </tr>
+                            </thead>
 
-                            <tr *ngFor="let post of postData| paginate : { itemsPerPage: tableSize, currentPage: page,
-                                    totalItems: count };   index as i">
-                                <td style="width: 5%;">{{post.id}}</td>
-                                <td style="width: 10%;">{{post.userId}}</td>
-                                <td style="width: 20%;">
-                                    <div class="popover__wrapper">
-                                        <h3 class="popover__title" id="hover">{{titlecasePipe.transform(post.title)
-                                            .substring(0,15)}}...</h3>
-                                        <div class="popover__content">
-                                            <ul style="word-wrap: break-word; text-align: left;">
-                                                {{titlecasePipe.transform(post.title)}}
-                                            </ul>
+                            <tbody>
+                                <tr *ngFor="let post of postData|slice
+                            : (pagination.currentPage - 1) * pagination.pageSize
+                            : pagination.currentPage * pagination.pageSize ">
+                                    <td style="width: 5%;">{{post.id}}</td>
+                                    <td style="width: 10%;">{{post.userId}}</td>
+                                    <td style="width: 20%;">
+                                        <div class="popover__wrapper">
+                                            <h3 class="popover__title" id="hover">
+                                                {{titlecasePipe.transform(post.title)
+                                                .substring(0,15)}}...</h3>
+                                            <div class="popover__content">
+                                                <ul style="word-wrap: break-word; text-align: left;">
+                                                    {{titlecasePipe.transform(post.title)}}
+                                                </ul>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
 
-                            <tr *ngIf="postData.length == 0">No data found</tr>
+                                <tr *ngIf="postData.length == 0">No data found</tr>
 
-                        </tbody>
+                            </tbody>
 
-                    </table>
+                        </table>
+                    </div>
 
-                    <!-- <div class="d-flex justify-content-center">
-                        <pagination-controls previousLabel="Prev" nextLabel="Next"
-                            (pageChange)="onTableDataChange($event)">
-                        </pagination-controls>
-                    </div> -->
+                    <app-pagination #pagination [collectionSize]="postData.length" [pageSize]="tableSize"
+                        [firstLastButtons]="true"></app-pagination>
 
-
-                    <app-pagination [index]="page" (page)="pageEvent($event)"></app-pagination>
                 </div>
             </div>
         </div>

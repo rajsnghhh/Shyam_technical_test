@@ -8,33 +8,36 @@ import { CommonService } from '../common.service';
 })
 export class ToDoComponent {
   toDoData: Array<any> = [];
-  page: number = 1;
-  count: number = 0;
   tableSize: number = 10;
-  tableSizes: any = [3, 6, 9, 12];
+  change: number = 10;
+  localdata: any;
 
   constructor(private service: CommonService) { }
 
   ngOnInit(): void {
     this.fetchPosts();
+    this.localdata = localStorage.getItem("tableSize")
+    console.log(this.localdata);
+    if (this.localdata) {
+      this.tableSize = this.localdata
+      this.change = this.localdata
+    }
   }
 
   fetchPosts() {
     this.service.getDatas('todos').subscribe((res: any) => {
       this.toDoData = res;
-      console.log( this.toDoData);
+      console.log(this.toDoData,'toDoData');
     })
   }
 
-
-
-  onTableDataChange(event: any) {
-    this.page = event;
+  enterData(e: any) {
+    this.tableSize = e.target.value;
     this.fetchPosts();
+    localStorage.setItem("tableSize", this.tableSize.toString());
   }
-  onTableSizeChange(event: any): void {
-    this.tableSize = event.target.value;
-    this.page = 1;
-    this.fetchPosts();
+
+  ngOnDestroy() {
+    localStorage.removeItem('tableSize');
   }
 }
