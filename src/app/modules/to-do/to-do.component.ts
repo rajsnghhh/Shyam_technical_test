@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { CommonService } from '../common.service';
+import { ChangeDetectorRef, Component } from '@angular/core';
+import { CommonService } from '../../sharedModule/common.service';
 
 @Component({
   selector: 'app-to-do',
@@ -12,28 +12,32 @@ export class ToDoComponent {
   change: number = 10;
   localdata: any;
 
-  constructor(private service: CommonService) { }
+  constructor(private service: CommonService, private cdRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
-    this.fetchPosts();
+    this.fetchToDo();
     this.localdata = localStorage.getItem("tableSize")
-    console.log(this.localdata);
+    // console.log(this.localdata);
     if (this.localdata) {
       this.tableSize = this.localdata
       this.change = this.localdata
     }
   }
 
-  fetchPosts() {
+  ngAfterViewChecked() {
+    this.cdRef.detectChanges();
+  }
+
+  fetchToDo() {
     this.service.getDatas('todos').subscribe((res: any) => {
       this.toDoData = res;
-      console.log(this.toDoData,'toDoData');
+      console.log(this.toDoData, 'toDoData');
     })
   }
 
   enterData(e: any) {
     this.tableSize = e.target.value;
-    this.fetchPosts();
+    this.fetchToDo();
     localStorage.setItem("tableSize", this.tableSize.toString());
   }
 

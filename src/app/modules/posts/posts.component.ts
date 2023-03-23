@@ -1,6 +1,6 @@
 import { TitleCasePipe } from '@angular/common';
-import { Component } from '@angular/core';
-import { CommonService } from '../common.service';
+import { ChangeDetectorRef, Component } from '@angular/core';
+import { CommonService } from '../../sharedModule/common.service';
 
 @Component({
   selector: 'app-posts',
@@ -13,12 +13,13 @@ export class PostsComponent {
   change: number = 10;
   localdata: any;
 
-  constructor(private service: CommonService, public titlecasePipe: TitleCasePipe) { }
+  constructor(private service: CommonService, public titlecasePipe: TitleCasePipe,
+    private cdRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.fetchPosts();
     this.localdata = localStorage.getItem("tableSize")
-    console.log(this.localdata);
+    // console.log(this.localdata);
     if (this.localdata) {
       this.tableSize = this.localdata
       this.change = this.localdata
@@ -26,15 +27,19 @@ export class PostsComponent {
 
   }
 
+  ngAfterViewChecked() {
+    this.cdRef.detectChanges();
+  }
+
   fetchPosts() {
     this.service.getDatas('posts').subscribe((res: any) => {
       this.postData = res;
-      console.log(this.postData,'postData');
+      console.log(this.postData, 'postData');
     })
   }
 
-
   enterData(e: any) {
+
     this.tableSize = e.target.value;
     this.fetchPosts();
     localStorage.setItem("tableSize", this.tableSize.toString());
@@ -43,7 +48,5 @@ export class PostsComponent {
   ngOnDestroy() {
     localStorage.removeItem('tableSize');
   }
-
-
 
 }

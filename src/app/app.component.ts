@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,43 +9,39 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 export class AppComponent {
   title = 'shyamtech_test';
   routerEvents: any;
-  currentRoute : any;
+  currentRoute: any;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
-    // router.events.subscribe((url:any) => console.log(url));
-    // console.log(router.url);
+  constructor(private router: Router) {
     this.routerEvents = this.router.events.subscribe(
-      (event:any)=>{
-        if(event instanceof NavigationEnd){
-          if(event.url == '/'){
-            localStorage.removeItem('pageSize')
+      (event: any) => {
+        if (event instanceof NavigationEnd) {
+          if (event.url == '/') {
+            localStorage.removeItem('tableSize')
           }
-          this.currentRoute = event.url;
-          console.log(this.currentRoute);
+
           // Prints the current route
-          // Eg.- /products
+          this.currentRoute = event.url;
+          console.log(this.currentRoute)
         }
       }
     )
   }
 
 
-ngOnInit(): void {
-  
-}
-openPostsModule() {
-  this.router.navigate(['/Posts']);
-}
+  ngOnInit(): void { }
 
-openToDoModule() {
-  this.router.navigate(['/To_Do']);
-}
+  openPostsModule() {
+    this.router.navigate(['/Posts']);
+  }
 
-ngOnDestroy(): void {
-  this.routerEvents.unsubscribe();
-  // Unsubscribe to avoid memory leak
-}
+  openToDoModule() {
+    this.router.navigate(['/To_Do']);
+  }
 
+  ngOnDestroy(): void {
+    this.routerEvents.unsubscribe();
+    // Unsubscribe to avoid memory leak
+  }
 
 }
 

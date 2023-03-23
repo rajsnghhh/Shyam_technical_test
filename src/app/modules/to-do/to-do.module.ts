@@ -5,7 +5,6 @@ import { ToDoRoutingModule } from './to-do-routing.module';
 import { ToDoComponent } from './to-do.component';
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
-import { PaginationComponent } from 'src/app/sharedModule/pagination/pagination.component';
 import { PaginationModule } from 'src/app/sharedModule/pagination.module';
 
 

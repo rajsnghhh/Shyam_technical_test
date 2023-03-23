@@ -5,7 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CommonService } from './modules/common.service';
+import { CommonService } from './sharedModule/common.service';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({

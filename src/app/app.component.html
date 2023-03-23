@@ -1,21 +1,20 @@
-
 <mat-toolbar class="nav_bar">
-    <!-- <input type="radio" id="radio1" name="radios" value="all" checked>
-    <label for="radio1" (click)="openPostsModule()">Posts</label>
-    <input type="radio" id="radio2" name="radios" value="false">
-    <label for="radio2" (click)="openToDoModule()">To Do</label> -->
-    <div class="section over-hide z-bigger" >
+    <div class="section over-hide z-bigger">
         <label class="for-checkbox" for="general"></label>
         <div class="section over-hide z-bigger">
             <div class="container pb-5">
                 <div class="col-12 pb-5">
-                    <input class="checkbox-tools" type="radio" name="tools" id="tool-1" *ngIf ="currentRoute == '/Posts'" checked>
-                    <input class="checkbox-tools" type="radio" name="tools" id="tool-1"  *ngIf ="currentRoute != '/Posts'">
+                    <input class="checkbox-tools" type="radio" name="tools" id="tool-1" *ngIf="currentRoute == '/Posts'"
+                        checked>
+                    <input class="checkbox-tools" type="radio" name="tools" id="tool-1"
+                        *ngIf="currentRoute != '/Posts'">
                     <label class="for-checkbox-tools" for="tool-1" (click)="openPostsModule()">
                         Posts
                     </label>
-                    <input class="checkbox-tools" type="radio" name="tools" id="tool-2" *ngIf ="currentRoute == '/To_Do'" checked>
-                    <input class="checkbox-tools" type="radio" name="tools" id="tool-2"  *ngIf ="currentRoute != '/To_Do'">
+                    <input class="checkbox-tools" type="radio" name="tools" id="tool-2" *ngIf="currentRoute == '/To_Do'"
+                        checked>
+                    <input class="checkbox-tools" type="radio" name="tools" id="tool-2"
+                        *ngIf="currentRoute != '/To_Do'">
                     <label class="for-checkbox-tools" for="tool-2" (click)="openToDoModule()">
                         To Do
                     </label>
@@ -25,7 +24,6 @@
     </div>
 
 </mat-toolbar>
-
 
 <div class="main_content_inner">
     <router-outlet></router-outlet>
